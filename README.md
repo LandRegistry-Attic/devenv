@@ -20,4 +20,10 @@ vagrant ssh
 fig -f up alpha/fig.yml
 ```
 
-```workspace``` will contain clones of your projects, and you can make changes there. The development environment will reload on change.
+```workspace``` will contain clones of your projects, and you can make changes there.
+
+# Hot reload
+
+For now, the dev env won't pick up changes automatically. 
+
+Change your code, then restart ```fig``` in the VM.
