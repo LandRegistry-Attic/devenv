@@ -1,0 +1,25 @@
+systemofrecord:
+  build: workspace/system-of-record/
+  command: ./run_dev.py
+  ports:
+   - "8000:8000"
+  links:
+   - redis
+   - sysofrecdb
+  environment:
+   - SETTINGS=config.DockerConfig
+   - PORT=8000
+mint:
+  build: workspace/mint/
+  command: ./run_dev.py
+  ports:
+   - "8001:8001"
+  links:
+   - systemofrecord
+  environment:
+   - SETTINGS=config.DockerConfig
+   - PORT=8001
+sysofrecdb:
+  image: orchardup/postgresql
+redis:
+  image: redis

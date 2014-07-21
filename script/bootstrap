@@ -1,0 +1,27 @@
+#!/bin/sh
+
+BASE=$1
+APPSLIST=$BASE/apps
+
+if [ ! -e $APPSLIST ] ; then
+  echo "Apps list at '$APPSLIST' doesn't exist."
+  exit 1
+fi
+
+apps=$(cat $APPSLIST | grep -v \# | grep -v '^\s*$')
+
+WORK=workspace
+mkdir -p $WORK
+
+for app in $apps; do
+  _app=$(basename $app)
+  if [ -e $WORK/$_app ] ; then
+    echo "getting latest: $app"
+    cd $WORK/$_app
+    git pull
+    cd -
+  else 
+    echo "getting for first time: $app"
+    git clone git@github.com:$app.git $WORK/$_app
+  fi
+done
