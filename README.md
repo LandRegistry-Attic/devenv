@@ -8,13 +8,16 @@ Development environment MARK III
 
 1. Bootstrap
 
-    ./script/bootstrap alpha
+```
+./script/bootstrap alpha
+```
 
 2. Vagrant
 
-    vagrant up
-    vagrant ssh
-    fig up -f alpha/fig.yml
-
+```
+vagrant up
+vagrant ssh
+fig -f up alpha/fig.yml
+```
 
 ```workspace``` will contain clones of your projects, and you can make changes there. The development environment will reload on change.

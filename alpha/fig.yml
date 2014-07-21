@@ -1,6 +1,6 @@
 systemofrecord:
   build: workspace/system-of-record/
-  command: ./run_dev.py
+  command: python run_dev.py
   ports:
    - "8000:8000"
   links:
@@ -11,7 +11,7 @@ systemofrecord:
    - PORT=8000
 mint:
   build: workspace/mint/
-  command: ./run_dev.py
+  command: python run_dev.py
   ports:
    - "8001:8001"
   links:
