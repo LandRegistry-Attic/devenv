@@ -1,4 +1,4 @@
-**Work in progress**
+:skull: *Work in progress* :skull:
 
 # devenv
 
@@ -30,18 +30,18 @@ fig -f foo/fig.yml up
 
 # Hot reload
 
-For now, the dev env won't pick up changes automatically. 
+*For now, the dev env won't pick up changes automatically.*
 
 Change your code, then restart ```fig``` or do a "clean" with:
 
-1. Ensure all containers are stopped
-2. Remove containers with
+- Ensure all containers are stopped
+- Remove containers with
 
 ```
 docker rm $(docker ps --no-trunc -aq)
 ```
 
-3. Remove Land Registry images with
+- Remove Land Registry images with
  
 ```
 docker rmi <uuid of image>
@@ -53,13 +53,13 @@ Remove all images with
 docker rmi $(docker images --no-trunc -q)
 ```
 
-4. Rebuild the images with
+- Rebuild the images with
 
 ```
 fig -f alpha/fig.yml build
 ```
 
-5. Bring fig up with
+- Bring fig up with
 
 ```
 fig -f alpha/fig.yml up
