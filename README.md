@@ -4,43 +4,29 @@
 
 Development environment MARK III
 
-# How?
-
-**for all commands below, you can ```s/alpha/concept/g```**
-
-## Bootstrap
-
-
-*defaults to 'alpha':*
+# TL;DR
 
 ```
-./script/bootstrap 
-```
-
-For concept:
-
-```
-./script/bootstrap concept
-```
-
-
-### Need a subset?
-
-You can copy any one of [alpha](alpha) or [concept](concept), modify it, and bootstrap it.
-
-    cp -R alpha thingy
-    # hack away, perhaps leave only Redis, ElasticSearch and PostgresQL, but run apps locally...
-    ./script/bootstrap thingy
-
-## Vagrant
-
-```
+./script/bootstrap # clones to 'workspace/'
 vagrant up
 vagrant ssh
 fig -f alpha/fig.yml up
 ```
 
-```workspace``` will contain clones of your projects, and you can make changes there.
+## Roll your own
+
+If you want only middleware, for instance, and want to run apps locally...
+
+You can copy any one of [alpha](alpha) or [concept](concept), remove apps, but leave Redis/ElasticSearch/PostgresQL, and bootstrap it.
+
+```
+cp -R alpha foo
+# make changes
+./script/bootstrap foo
+# and then in the VM...
+fig -f foo/fig.yml up
+```
+
 
 # Hot reload
 
