@@ -8,13 +8,23 @@ Development environment MARK III
 
 **for all commands below, you can ```s/alpha/concept/g```**
 
-1. Bootstrap
+## Bootstrap
+
+
+*defaults to 'alpha':*
 
 ```
 ./script/bootstrap 
 ```
 
-## Need a subset?
+For concept:
+
+```
+./script/bootstrap concept
+```
+
+
+### Need a subset?
 
 You can copy any one of [alpha](alpha) or [concept](concept), modify it, and bootstrap it.
 
@@ -22,7 +32,7 @@ You can copy any one of [alpha](alpha) or [concept](concept), modify it, and boo
     # hack away, perhaps leave only Redis, ElasticSearch and PostgresQL, but run apps locally...
     ./script/bootstrap thingy
 
-2. Vagrant
+## Vagrant
 
 ```
 vagrant up
