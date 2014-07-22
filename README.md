@@ -31,8 +31,9 @@ For now, the dev env won't pick up changes automatically.
 Change your code, then restart ```fig``` or do a "clean" with:
 
 1. Ensure all containers are stop
-2. Remove with ```docker rm $(docker ps --no-trunc -aq)```
-3. Rebuild the images with ```fig -f alpha/fig.yml build```
-4. Bring fig up with ```fig -f alpha/fig.yml up```
+2. Remove containers with ```docker rm $(docker ps --no-trunc -aq)```
+3. Remove Land Registry images with ```docker rmi <uuid of image>```
+4. Rebuild the images with ```fig -f alpha/fig.yml build```
+5. Bring fig up with ```fig -f alpha/fig.yml up```
 
 **(someone, please verify these for me)**

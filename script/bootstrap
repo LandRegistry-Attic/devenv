@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE=$1
+BASE=${1:-alpha}
 APPSLIST=$BASE/apps
 
 if [ ! -e $APPSLIST ] ; then
