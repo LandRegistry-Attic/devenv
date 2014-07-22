@@ -21,6 +21,8 @@ mint:
    - PORT=8001
 sysofrecdb:
   image: orchardup/postgresql
+publictitlesdb:
+  image: orchardup/postgresql
 redis:
   image: redis
 elasticsearch:
@@ -35,6 +37,16 @@ searchapi:
   environment:
    - SETTINGS=config.DockerConfig
    - PORT=8003
+publictitlesapi:
+  build: workspace/public-titles-api/
+  command: python run_dev.py
+  ports:
+   - "8005:8005"
+  links:
+   - publictitlesdb
+  environment:
+   - SETTINGS=config.DockerConfig
+   - PORT=8005
 #casework-frontend:
 #  build: workspace/casework-frontend
 #  command: python run_dev.py
