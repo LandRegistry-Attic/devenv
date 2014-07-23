@@ -1,27 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-BASE=${1:-alpha}
-APPSLIST=$BASE/apps
+set -e
 
-if [ ! -e $APPSLIST ] ; then
-  echo "Apps list at '$APPSLIST' doesn't exist."
-  exit 1
-fi
-
-apps=$(cat $APPSLIST | grep -v \# | grep -v '^\s*$')
-
-WORK=workspace
-mkdir -p $WORK
+source script/configure
 
 for app in $apps; do
   _app=$(basename $app)
-  if [ -e $WORK/$_app ] ; then
-    echo "getting latest: $app"
-    cd $WORK/$_app
-    git pull
-    cd -
-  else 
-    echo "getting for first time: $app"
+  if [[ ! -d $WORK/$_app ]] ; then
+    echo "Installing: ${app}"
     git clone git@github.com:$app.git $WORK/$_app
+  else 
+    echo "Not updating local copy of ${app}"
   fi
 done

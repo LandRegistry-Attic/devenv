@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+source script/configure
+
+for app in $apps; do
+  _app=$(basename $app)
+  if [ -e $WORK/$_app ] ; then
+    echo "Updating: $app"
+    cd $WORK/$_app
+    git pull
+    cd -
+  else 
+    echo "Installing: $app"
+    git clone git@github.com:$app.git $WORK/$_app
+  fi
+done
