@@ -117,3 +117,9 @@ Sometimes Docker or something more sinister throws a wobbly, and stopping/killin
 Tab to a different shell and ```vagrant reload``` the VM.
 
 Then ```vagrant ssh``` in again, try ```fig up``` again, or delete the containers/images before trying.
+
+# Remove <none> containers
+
+```
+docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
+```

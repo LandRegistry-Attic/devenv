@@ -24,7 +24,7 @@ sysofrecdb:
 publictitlesdb:
   image: orchardup/postgresql
 redis:
-  image: redis
+  image: dockerfile/redis
 elasticsearch:
   image: orchardup/elasticsearch
 searchapi:
