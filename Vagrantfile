@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.ssh.forward_agent = true
   config.vm.network "private_network", :ip => "172.16.42.43"

@@ -66,3 +66,54 @@ fig -f alpha/fig.yml up
 ```
 
 **(someone, please verify these for me)**
+
+# Extending
+
+You can add a new app to your existing VM without having to start over.
+
+Here I show an example of adding ```property-frontend``` to ```fig.yml```, with all the other apps pre-existing, upon which it's merely a case  of running ```fig up``` again, but with the ```--no-recreate``` option so that your existing images aren't re-built.
+
+
+```
+vagrant@precise64:/vagrant$ fig -f alpha/fig.yml up --no-recreate
+Starting new HTTP connection (1): 0.0.0.0
+Starting alpha_publictitlesdb_1...
+Starting alpha_redis_1...
+Starting alpha_sysofrecdb_1...
+Starting alpha_elasticsearch_1...
+Starting alpha_searchapi_1...
+Starting alpha_systemofrecord_1...
+Starting alpha_mint_1...
+Starting alpha_publictitlesapi_1...
+Creating alpha_propertyfrontend_1...
+Building propertyfrontend...
+ ---> cdc18ed4ed6f
+ Step 1 : ADD . /code
+  ---> 8f7b87da9c97
+
+<snippity snip>
+```
+
+## I added something, but made a mistake
+
+If you add a new app, but made a mistake, or omitted something, you'll see a message like:
+
+```
+Service 'caseworkfrontend' failed to build: ... <snip>
+```
+
+The command ```docker ps -a``` will then show a half-baked image with an interim name with a non-zero exit status:
+
+![half-baked](http://i.imgur.com/1e5QY6x.png)
+
+The trick here is to delete the container and image for the offending image, fix the code, then ```fig up``` again.
+
+![go go go](http://i.imgur.com/wHDm6c8.png)
+
+# Something went wrong
+
+Sometimes Docker or something more sinister throws a wobbly, and stopping/killing/rf-minus-effing it doesn't cut the mustard.
+
+Tab to a different shell and ```vagrant reload``` the VM.
+
+Then ```vagrant ssh``` in again, try ```fig up``` again, or delete the containers/images before trying.
