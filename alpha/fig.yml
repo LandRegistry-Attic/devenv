@@ -1,6 +1,6 @@
 systemofrecord:
   build: workspace/system-of-record/
-  command: python run_dev.py
+  command: ./docker-run.sh 
   ports:
    - "8000:8000"
   links:
