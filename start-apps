@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+case `uname` in
+	Darwin)
+		echo "You can't run this script on a mac."
+		echo 
+		echo "You need to run 'vagrant up' if your VM is not running"
+		echo "and run 'vagrant ssh' to log into your VM."
+		echo
+		echo "Then re-run this script and the applications should start"
+		echo
+		exit 1
+	;;
+esac
+
+
+fig -f alpha/fig.yml up
