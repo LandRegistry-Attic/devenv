@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BASE=${1:-alpha}
+APPSLIST=$BASE/apps
+
+if [ ! -e $APPSLIST ] ; then
+  echo "Apps list at '$APPSLIST' doesn't exist."
+  exit 1
+fi
+
+apps=$(cat $APPSLIST | grep -v \# | grep -v '^\s*$')
+
+TEMP=$(mktemp -t requirements-XXXXXX)
+for app in $apps; do
+  curl https://raw.githubusercontent.com/$app/master/requirements.txt >> $TEMP
+done
+
+cat $TEMP | sort | uniq > $TEMP
+echo $TEMP
